@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cat : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody2D))]
+public class Cat : GameEntity {
     [SerializeField]
     private float moveMag = 25f;
 

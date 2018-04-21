@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : MonoBehaviour {
+public class Player : GameEntity {
     [SerializeField]
     private float moveMag = 100f;
 
