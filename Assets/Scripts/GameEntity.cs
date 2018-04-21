@@ -23,6 +23,8 @@ public abstract class GameEntity : MonoBehaviour
     public virtual void Damage(int dmgAmount) {
         Health -= dmgAmount;
 
+        Health = Math.Max(0, Health);
+
         if (Health > 0) {
             onDamage();
         } else {
