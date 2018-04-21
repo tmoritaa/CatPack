@@ -16,14 +16,32 @@ public class InputManager : MonoBehaviour {
 
     public event LeftMouseUpEvent OnLeftMouseUp;
 
+    private Camera mainCamera;
+    public Camera MainCamera
+    {
+        get {
+            return mainCamera;
+        }
+    }
+
+    [SerializeField]
+    private CursorImage cursor;
+    public CursorImage Cursor
+    {
+        get {
+            return cursor;
+        }
+    }
+
     void Awake() {
         instance = this;
+        mainCamera = Camera.main;
     }
 
     // Update is called once per frame
     void Update () {
 		if (Input.GetMouseButtonUp(0)) {
-            Vector2 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 worldMousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
             if (OnLeftMouseUp != null) {
                 OnLeftMouseUp(worldMousePos);

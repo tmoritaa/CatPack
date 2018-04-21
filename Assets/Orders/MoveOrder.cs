@@ -16,6 +16,9 @@ public class MoveOrder : Order
 
     public override void PrepareForInput() {
         InputManager.Instance.OnLeftMouseUp += onMouseUp;
+
+        InputManager.Instance.Cursor.SetImageToTarget();
+
         waitingForInput = true;
     }
 
@@ -44,6 +47,7 @@ public class MoveOrder : Order
             InputManager.Instance.OnLeftMouseUp -= onMouseUp;
         }
 
+        InputManager.Instance.Cursor.SetImageToDefault();
         waitingForInput = false;
     }
 
@@ -63,6 +67,9 @@ public class MoveOrder : Order
     private void onMouseUp(Vector2 mousePos) {
         targetPos = mousePos;
         waitingForInput = false;
+
+        InputManager.Instance.Cursor.SetImageToDefault();
+
         InputManager.Instance.OnLeftMouseUp -= onMouseUp;
     }
 }
