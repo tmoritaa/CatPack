@@ -10,6 +10,7 @@ public abstract class Order
     {
         Wander = 0,
         Move,
+        Attack,
     }
 
     protected OrderType orderId;

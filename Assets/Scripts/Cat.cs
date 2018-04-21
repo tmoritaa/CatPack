@@ -30,10 +30,9 @@ public class Cat : GameEntity {
     void Start() {
         orderDict.Add(Order.OrderType.Wander, new WanderOrder(this));
         orderDict.Add(Order.OrderType.Move, new MoveOrder(this));
+        orderDict.Add(Order.OrderType.Attack, new AttackOrder(this));
 
-        InputManager.Instance.OnRightMouseUp += returnToDefaultOrder;
-
-        returnToDefaultOrder();
+        ReturnToDefaultOrder();
     }
 
     void Update() {
@@ -46,7 +45,7 @@ public class Cat : GameEntity {
             curOrder.PerformOrderUpdate();
 
             if (curOrder.Done()) {
-                returnToDefaultOrder();
+                ReturnToDefaultOrder();
             }
         }
     }
@@ -80,7 +79,7 @@ public class Cat : GameEntity {
         body.velocity = dir.normalized * (run ? runMag : moveMag);
     }
 
-    private void returnToDefaultOrder() {
+    public void ReturnToDefaultOrder() {
         if (curOrder == null || curOrder.OrderId != Order.OrderType.Wander) {
             setupNewOrder(Order.OrderType.Wander);
         }
