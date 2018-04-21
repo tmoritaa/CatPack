@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  score: 10
   moveMag: 50
   rect: {fileID: 224618181494013754}
 --- !u!222 &222164194003129656

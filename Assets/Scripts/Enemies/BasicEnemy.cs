@@ -19,7 +19,7 @@ class BasicEnemy : Enemy
             GameEntity entity = collision.GetComponent<GameEntity>();
             entity.Damage(1);
 
-            performDeathLogic();
+            onDeath();
         }
     }
 
@@ -56,6 +56,8 @@ class BasicEnemy : Enemy
     }
 
     protected override void onDeath() {
+        base.onDeath();
+
         performDeathLogic();
     }
 

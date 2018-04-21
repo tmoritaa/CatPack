@@ -7,6 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class Enemy : GameEntity
 {
+    [SerializeField]
+    private int score;
+
     protected Rigidbody2D body;
 
     protected override void Awake() {
@@ -24,4 +27,8 @@ public abstract class Enemy : GameEntity
 
     protected abstract void performGameLogic();
     protected abstract void performMovement();
+
+    protected override void onDeath() {
+        ScoreHandler.Instance.AddScore(score);
+    }
 }
