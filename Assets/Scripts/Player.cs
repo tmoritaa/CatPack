@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Player : GameEntity {
+public class Player : PlayerEntity {
     [SerializeField]
     private float moveMag = 100f;
 
@@ -73,6 +73,8 @@ public class Player : GameEntity {
     }
 
     protected override void onDamage() {
+        base.onDamage();
+
         Debug.Log("Player damaged");
         // TODO: for now do nothing. Later trigger animation and pause time as well as invincibility
     }

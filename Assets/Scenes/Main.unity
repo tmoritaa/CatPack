@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 760339583}
   - component: {fileID: 760339584}
   - component: {fileID: 760339585}
+  - component: {fileID: 760339586}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -748,6 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  invincibleDur: 1
   moveMag: 100
   timeSlowdownVal: 0
   timeBarDepletionPerSec: 33
@@ -789,6 +791,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 25
+--- !u!225 &760339586
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760339581}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &809319751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1535,7 @@ GameObject:
   - component: {fileID: 1348247702}
   - component: {fileID: 1348247703}
   - component: {fileID: 1348247704}
+  - component: {fileID: 1348247705}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Cat
@@ -1564,6 +1578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 9
+  invincibleDur: 1
   moveMag: 50
   runMag: 150
   ordersFramePrefab: {fileID: 114371990393351542, guid: 28bd5cbd920f1b94ea923492105d762d,
@@ -1611,6 +1626,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 12.5
+--- !u!225 &1348247705
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1348247700}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1382086707
 GameObject:
   m_ObjectHideFlags: 0
