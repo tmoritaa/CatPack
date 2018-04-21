@@ -517,6 +517,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   moveMag: 100
+  timeSlowdownVal: 0
+  timeBarDepletionPerSec: 33
+  timeBarRechargePerSec: 25
+  minTimeBarRequiredForActivation: 20
+  maxTimeBar: 100
 --- !u!50 &760339584
 Rigidbody2D:
   serializedVersion: 4
