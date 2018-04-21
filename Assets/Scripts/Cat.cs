@@ -69,12 +69,15 @@ public class Cat : GameEntity {
 
     public void CatClicked() {
         displayOrders(true);
+
+        InputManager.Instance.OnRightMouseUp += hideOrders;
     }
 
     public void OrderButtonClicked(int orderNumber) {
         newOrderId = (Order.OrderType)orderNumber;
         shouldSetupNewOrder = true;
 
+        InputManager.Instance.OnRightMouseUp -= hideOrders;
         displayOrders(false);
     }
 
@@ -100,7 +103,18 @@ public class Cat : GameEntity {
 
     protected override void onDeath() {
         // TODO: play death animation, then kill self. For now just destroy self
+        cleanup();
         GameObject.Destroy(this.gameObject);
+    }
+
+    private void cleanup() {
+        if (curOrder != null) {
+            curOrder.Cleanup();
+        }
+
+        if (orderObj.activeSelf) {
+            InputManager.Instance.OnRightMouseUp -= hideOrders;
+        }
     }
 
     private void setupNewOrder(Order.OrderType id) {
@@ -114,5 +128,9 @@ public class Cat : GameEntity {
 
     private void displayOrders(bool show) {
         orderObj.SetActive(show);
+    }
+
+    private void hideOrders() {
+        displayOrders(false);
     }
 }
