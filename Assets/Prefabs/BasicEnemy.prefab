@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114735516495424724}
   - component: {fileID: 50958683756718500}
   - component: {fileID: 58297164197868030}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BasicEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 224747604803810004}
   - component: {fileID: 222164194003129656}
   - component: {fileID: 114208476942991488}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveMag: 75
+  rect: {fileID: 224618181494013754}
 --- !u!222 &222164194003129656
 CanvasRenderer:
   m_ObjectHideFlags: 1
