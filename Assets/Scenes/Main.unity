@@ -1759,8 +1759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpawnRange: 350
-  maxSpawnRange: 500
-  spawnRate: 2
+  maxSpawnRange: 450
+  spawnRate: 1.5
   scoreThresholdPerLevel: 64000000
   enemyPrefabsForLevel1:
   - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
