@@ -29,14 +29,17 @@ public class Player : GameEntity {
 
     private bool timeStopped = false;
 
-    private float curTimeBar = 0;
+    public float CurTimeBar
+    {
+        get; private set;
+    }
 
     protected override void Awake() {
         base.Awake();
 
         body = GetComponent<Rigidbody2D>();
 
-        curTimeBar = maxTimeBar;
+        CurTimeBar = maxTimeBar;
     }
 
     void Update () {
@@ -76,24 +79,22 @@ public class Player : GameEntity {
     }
 
     private void handleTimeStopLogic() {
-        if (!timeStopped && curTimeBar >= minTimeBarRequiredForActivation && Input.GetKeyDown(KeyCode.Space)) {
+        if (!timeStopped && CurTimeBar >= minTimeBarRequiredForActivation && Input.GetKeyDown(KeyCode.Space)) {
             timeStopped = true;
         } else if (timeStopped && Input.GetKeyUp(KeyCode.Space)) {
             timeStopped = false;
         }
 
         if (timeStopped) {
-            curTimeBar = Mathf.Clamp(curTimeBar - timeBarDepletionPerSec * Time.unscaledDeltaTime, 0, maxTimeBar);
+            CurTimeBar = Mathf.Clamp(CurTimeBar - timeBarDepletionPerSec * Time.unscaledDeltaTime, 0, maxTimeBar);
         } else {
-            curTimeBar = Mathf.Clamp(curTimeBar + timeBarRechargePerSec * Time.unscaledDeltaTime, 0, maxTimeBar);
+            CurTimeBar = Mathf.Clamp(CurTimeBar + timeBarRechargePerSec * Time.unscaledDeltaTime, 0, maxTimeBar);
         }
 
-        if (curTimeBar == 0) {
+        if (CurTimeBar == 0) {
             timeStopped = false;
         }
 
         Time.timeScale = timeStopped ? timeSlowdownVal : 1;
-
-        Debug.Log(curTimeBar);
     }
 }
