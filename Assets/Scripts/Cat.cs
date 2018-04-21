@@ -12,9 +12,17 @@ public class Cat : GameEntity {
     private float runMag = 75f;
 
     [SerializeField]
-    private GameObject orderObj;
+    private OrdersFrame ordersFramePrefab;
+
+    [SerializeField]
+    private Transform ordersFrameRoot;
+
+    [SerializeField]
+    private GameObject ordersFollowGO;
 
     private Rigidbody2D body;
+
+    private OrdersFrame orderObj;
 
     private Dictionary<Order.OrderType, Order> orderDict = new Dictionary<Order.OrderType, Order>();
 
@@ -27,6 +35,10 @@ public class Cat : GameEntity {
         base.Awake();
 
         body = GetComponent<Rigidbody2D>();
+
+        orderObj = Instantiate(ordersFramePrefab, ordersFrameRoot);
+        orderObj.Init(this, ordersFollowGO);
+
         displayOrders(false);
     }
 
@@ -73,8 +85,8 @@ public class Cat : GameEntity {
         InputManager.Instance.OnRightMouseUp += hideOrders;
     }
 
-    public void OrderButtonClicked(int orderNumber) {
-        newOrderId = (Order.OrderType)orderNumber;
+    public void OrderButtonClicked(Order.OrderType orderId) {
+        newOrderId = orderId;
         shouldSetupNewOrder = true;
 
         InputManager.Instance.OnRightMouseUp -= hideOrders;
@@ -112,7 +124,7 @@ public class Cat : GameEntity {
             curOrder.Cleanup();
         }
 
-        if (orderObj.activeSelf) {
+        if (orderObj.IsDisplayed) {
             InputManager.Instance.OnRightMouseUp -= hideOrders;
         }
     }
@@ -127,7 +139,7 @@ public class Cat : GameEntity {
     }
 
     private void displayOrders(bool show) {
-        orderObj.SetActive(show);
+        orderObj.SetShowState(show);
     }
 
     private void hideOrders() {
