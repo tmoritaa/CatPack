@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a9fe98ce0f878742b8ad162b00ebeb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 1
   moveMag: 50
   rect: {fileID: 224618181494013754}
 --- !u!222 &222164194003129656

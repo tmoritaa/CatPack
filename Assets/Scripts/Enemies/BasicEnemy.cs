@@ -19,7 +19,7 @@ class BasicEnemy : Enemy
             GameEntity entity = collision.GetComponent<GameEntity>();
             entity.Damage(1);
 
-            DestroySelf();
+            performDeathLogic();
         }
     }
 
@@ -49,5 +49,19 @@ class BasicEnemy : Enemy
 
     protected override void performMovement() {
         body.velocity = curDir * moveMag;
+    }
+
+    protected override void onDamage() {
+        // Do nothing since only one health
+    }
+
+    protected override void onDeath() {
+        performDeathLogic();
+    }
+
+    private void performDeathLogic() {
+        // TODO: for now. Later add explosion animation then destroy self.
+
+        destroySelf();
     }
 }

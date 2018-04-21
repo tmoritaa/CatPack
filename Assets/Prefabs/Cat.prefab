@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83e38593d5cbc4db9670b7afdb3886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 9
   moveMag: 50
   runMag: 150
   orderObj: {fileID: 1780097872042186}

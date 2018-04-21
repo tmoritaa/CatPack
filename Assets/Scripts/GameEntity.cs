@@ -4,20 +4,39 @@ using System.Linq;
 
 using UnityEngine;
 
-public class GameEntity : MonoBehaviour
+public abstract class GameEntity : MonoBehaviour
 {
+    [SerializeField]
+    protected int startingHealth = 1;
+
+    protected bool beingDestoryed = false;
+
     public int Health
     {
-        get; private set;
+        get; protected set;
+    }
+    
+    protected virtual void Awake() {
+        Health = startingHealth;
     }
 
     public virtual void Damage(int dmgAmount) {
-        Debug.Log("damaged");
-        // TODO: later implement damaging and death logic
-        // Probably want a onDeath virtual function for customizable death response
-    }
+        Health -= dmgAmount;
 
-    public void DestroySelf() {
-        GameObject.Destroy(this.gameObject);
+        if (Health > 0) {
+            onDamage();
+        } else {
+            onDeath();
+        }
+    }
+    
+    protected abstract void onDamage();
+    protected abstract void onDeath();
+
+    protected void destroySelf() {
+        if (!beingDestoryed) {
+            GameObject.Destroy(this.gameObject);
+            beingDestoryed = true;
+        }
     }
 }

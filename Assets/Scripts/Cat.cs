@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,9 @@ public class Cat : GameEntity {
     private bool shouldSetupNewOrder = false;
     private Order.OrderType newOrderId = Order.OrderType.Wander;
 
-    void Awake() {
+    protected override void Awake() {
+        base.Awake();
+
         body = GetComponent<Rigidbody2D>();
         displayOrders(false);
     }
@@ -58,6 +61,12 @@ public class Cat : GameEntity {
         }
     }
 
+    void OnDrawGizmos() {
+        if (curOrder != null) {
+            curOrder.DrawGizmos();
+        }
+    }
+
     public void CatClicked() {
         displayOrders(true);
     }
@@ -85,6 +94,15 @@ public class Cat : GameEntity {
         }
     }
 
+    protected override void onDamage() {
+        // TODO: for now do nothing. Later trigger animation and pause time as well as invincibility
+    }
+
+    protected override void onDeath() {
+        // TODO: play death animation, then kill self. For now just destroy self
+        GameObject.Destroy(this.gameObject);
+    }
+
     private void setupNewOrder(Order.OrderType id) {
         if (curOrder != null) {
             curOrder.Cleanup();
@@ -96,11 +114,5 @@ public class Cat : GameEntity {
 
     private void displayOrders(bool show) {
         orderObj.SetActive(show);
-    }
-
-    void OnDrawGizmos() {
-        if (curOrder != null) {
-            curOrder.DrawGizmos();
-        }
     }
 }

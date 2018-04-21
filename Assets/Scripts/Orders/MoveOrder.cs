@@ -15,12 +15,12 @@ public class MoveOrder : Order
     public MoveOrder(Cat catRef) : base(OrderType.Move, catRef) {}
 
     public override void PrepareForInput() {
-        InputManager.Instance.OnLeftMouseUp += onMouseUp;
+        waitingForInput = true;
+
+        InputManager.Instance.OnLeftMouseDown += onMouseDown;
         InputManager.Instance.OnRightMouseUp += owningCat.ReturnToDefaultOrder;
 
         InputManager.Instance.Cursor.SetImageToTarget();
-
-        waitingForInput = true;
     }
 
     public override void PerformOrderFixedUpdate() {
@@ -30,7 +30,7 @@ public class MoveOrder : Order
     }
 
     public override void PerformOrderUpdate() {
-        // Do nothing.
+        // Do nothing
     }
 
     public override bool Done() {
@@ -45,7 +45,7 @@ public class MoveOrder : Order
 
     public override void Cleanup() {
         if (waitingForInput) {
-            InputManager.Instance.OnLeftMouseUp -= onMouseUp;
+            InputManager.Instance.OnLeftMouseDown -= onMouseDown;
             InputManager.Instance.OnRightMouseUp -= owningCat.ReturnToDefaultOrder;
         }
 
@@ -66,7 +66,7 @@ public class MoveOrder : Order
         Gizmos.color = origColor;
     }
 
-    private void onMouseUp(Vector2 mousePos) {
+    private void onMouseDown(Vector2 mousePos) {
         targetPos = mousePos;
 
         Cleanup();

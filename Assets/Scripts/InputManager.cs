@@ -12,10 +12,10 @@ public class InputManager : MonoBehaviour {
         }
     }
 
-    public delegate void LeftMouseUpEvent(Vector2 mousePos);
+    public delegate void LeftMouseDownEvent(Vector2 mousePos);
     public delegate void RightMouseUpEvent();
 
-    public event LeftMouseUpEvent OnLeftMouseUp;
+    public event LeftMouseDownEvent OnLeftMouseDown;
     public event RightMouseUpEvent OnRightMouseUp;
 
     private Camera mainCamera;
@@ -42,11 +42,11 @@ public class InputManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (Input.GetMouseButtonUp(0)) {
+		if (Input.GetMouseButtonDown(0)) {
             Vector2 worldMousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            if (OnLeftMouseUp != null) {
-                OnLeftMouseUp(worldMousePos);
+            if (OnLeftMouseDown != null) {
+                OnLeftMouseDown(worldMousePos);
             }
         }
 

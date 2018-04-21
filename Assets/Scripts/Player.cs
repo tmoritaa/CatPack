@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,9 @@ public class Player : GameEntity {
 
     private Vector2 curDir = new Vector2();
 
-    void Awake() {
+    protected override void Awake() {
+        base.Awake();
+
         body = GetComponent<Rigidbody2D>();
     }
 
@@ -37,5 +40,15 @@ public class Player : GameEntity {
 
     void FixedUpdate() {
         body.velocity = curDir * moveMag;
+    }
+
+    protected override void onDamage() {
+        Debug.Log("Player damaged");
+        // TODO: for now do nothing. Later trigger animation and pause time as well as invincibility
+    }
+
+    protected override void onDeath() {
+        Debug.Log("Player dead");
+        // TODO: for now do nothing. Later display game over screen
     }
 }

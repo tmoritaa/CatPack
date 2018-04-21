@@ -20,7 +20,7 @@ class AttackOrder : Order
     public AttackOrder(Cat catRef) : base(OrderType.Attack, catRef) {}
 
     public override void PrepareForInput() {
-        InputManager.Instance.OnLeftMouseUp += onMouseUp;
+        InputManager.Instance.OnLeftMouseDown += onMouseDown;
         InputManager.Instance.OnRightMouseUp += owningCat.ReturnToDefaultOrder;
 
         InputManager.Instance.Cursor.SetImageToTarget();
@@ -50,7 +50,7 @@ class AttackOrder : Order
 
     public override void Cleanup() {
         if (waitingForInput) {
-            InputManager.Instance.OnLeftMouseUp -= onMouseUp;
+            InputManager.Instance.OnLeftMouseDown -= onMouseDown;
             InputManager.Instance.OnRightMouseUp -= owningCat.ReturnToDefaultOrder;
         }
 
@@ -66,7 +66,7 @@ class AttackOrder : Order
         // Do nothing
     }
 
-    private void onMouseUp(Vector2 mousePos) {
+    private void onMouseDown(Vector2 mousePos) {
         shootDir = (mousePos - (Vector2)owningCat.transform.position).normalized;
         Cleanup();
     }

@@ -9,7 +9,8 @@ public abstract class Enemy : GameEntity
 {
     protected Rigidbody2D body;
 
-    protected virtual void Awake() {
+    protected override void Awake() {
+        base.Awake();
         body = this.GetComponent<Rigidbody2D>();
     }
 
