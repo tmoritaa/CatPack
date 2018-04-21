@@ -30,6 +30,8 @@ public class Cat : MonoBehaviour {
         orderDict.Add(Order.OrderType.Wander, new WanderOrder(this));
         orderDict.Add(Order.OrderType.Move, new MoveOrder(this));
 
+        InputManager.Instance.OnRightMouseUp += returnToDefaultOrder;
+
         returnToDefaultOrder();
     }
 
@@ -78,7 +80,9 @@ public class Cat : MonoBehaviour {
     }
 
     private void returnToDefaultOrder() {
-        setupNewOrder(Order.OrderType.Wander);
+        if (curOrder == null || curOrder.OrderId != Order.OrderType.Wander) {
+            setupNewOrder(Order.OrderType.Wander);
+        }
     }
 
     private void setupNewOrder(Order.OrderType id) {

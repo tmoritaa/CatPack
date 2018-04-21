@@ -13,8 +13,10 @@ public class InputManager : MonoBehaviour {
     }
 
     public delegate void LeftMouseUpEvent(Vector2 mousePos);
+    public delegate void RightMouseUpEvent();
 
     public event LeftMouseUpEvent OnLeftMouseUp;
+    public event RightMouseUpEvent OnRightMouseUp;
 
     private Camera mainCamera;
     public Camera MainCamera
@@ -45,6 +47,12 @@ public class InputManager : MonoBehaviour {
 
             if (OnLeftMouseUp != null) {
                 OnLeftMouseUp(worldMousePos);
+            }
+        }
+
+        if (Input.GetMouseButtonUp(1)) {
+            if (OnRightMouseUp != null) {
+                OnRightMouseUp();
             }
         }
 	}
