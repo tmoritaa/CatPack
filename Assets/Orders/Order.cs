@@ -8,7 +8,7 @@ public abstract class Order
 {
     public enum OrderType
     {
-        Idle = 0,
+        Wander = 0,
         Move,
     }
 

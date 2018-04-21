@@ -24,7 +24,7 @@ public class MoveOrder : Order
 
     public override void PerformOrderFixedUpdate() {
         if (!waitingForInput) {
-            owningCat.MoveTowardsPos(targetPos);
+            owningCat.MoveTowardsPos(targetPos, true);
         }
     }
 

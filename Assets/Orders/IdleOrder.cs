@@ -5,7 +5,7 @@ using System.Text;
 
 public class IdleOrder : Order
 {
-    public IdleOrder(Cat catRef) : base(OrderType.Idle, catRef) {}
+    public IdleOrder(Cat catRef) : base(OrderType.Wander, catRef) {}
 
     public override void PrepareForInput() {
         // Do nothing

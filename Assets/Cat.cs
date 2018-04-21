@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Cat : MonoBehaviour {
     [SerializeField]
-    private float moveMag = 75f;
+    private float moveMag = 25f;
+
+    [SerializeField]
+    private float runMag = 75f;
 
     [SerializeField]
     private GameObject orderObj;
@@ -16,7 +19,7 @@ public class Cat : MonoBehaviour {
     private Order curOrder = null;
 
     private bool shouldSetupNewOrder = false;
-    private Order.OrderType newOrderId = Order.OrderType.Idle;
+    private Order.OrderType newOrderId = Order.OrderType.Wander;
 
     void Awake() {
         body = GetComponent<Rigidbody2D>();
@@ -24,7 +27,7 @@ public class Cat : MonoBehaviour {
     }
 
     void Start() {
-        orderDict.Add(Order.OrderType.Idle, new IdleOrder(this));
+        orderDict.Add(Order.OrderType.Wander, new WanderOrder(this));
         orderDict.Add(Order.OrderType.Move, new MoveOrder(this));
 
         returnToDefaultOrder();
@@ -64,14 +67,18 @@ public class Cat : MonoBehaviour {
         displayOrders(false);
     }
 
-    public void MoveTowardsPos(Vector2 pos) {
+    public void MoveTowardsPos(Vector2 pos, bool run) {
         Vector2 diffVec = (pos - (Vector2)this.transform.position).normalized;
 
-        body.velocity = diffVec * moveMag;
+        body.velocity = diffVec * (run ? runMag : moveMag);
+    }
+
+    public void MoveInDir(Vector2 dir, bool run) {
+        body.velocity = dir.normalized * (run ? runMag : moveMag);
     }
 
     private void returnToDefaultOrder() {
-        setupNewOrder(Order.OrderType.Idle);
+        setupNewOrder(Order.OrderType.Wander);
     }
 
     private void setupNewOrder(Order.OrderType id) {
