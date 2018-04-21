@@ -20,9 +20,20 @@ public class Cat : GameEntity {
     [SerializeField]
     private GameObject ordersFollowGO;
 
+    [SerializeField]
+    private CatHealthDisplay catHealthPrefab;
+
+    [SerializeField]
+    private Transform healthFrameRoot;
+
+    [SerializeField]
+    private GameObject healthFollowsGO;
+
     private Rigidbody2D body;
 
     private OrdersFrame orderObj;
+
+    private CatHealthDisplay catHealthObj;
 
     private Dictionary<Order.OrderType, Order> orderDict = new Dictionary<Order.OrderType, Order>();
 
@@ -38,6 +49,9 @@ public class Cat : GameEntity {
 
         orderObj = Instantiate(ordersFramePrefab, ordersFrameRoot);
         orderObj.Init(this, ordersFollowGO);
+
+        catHealthObj = Instantiate(catHealthPrefab, healthFrameRoot);
+        catHealthObj.Init(this, healthFollowsGO);
 
         displayOrders(false);
     }
@@ -127,6 +141,9 @@ public class Cat : GameEntity {
         if (orderObj.IsDisplayed) {
             InputManager.Instance.OnRightMouseUp -= hideOrders;
         }
+
+        Destroy(orderObj.gameObject);
+        Destroy(catHealthObj.gameObject);
     }
 
     private void setupNewOrder(Order.OrderType id) {
