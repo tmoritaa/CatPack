@@ -22,7 +22,7 @@ public class Player : GameEntity {
 
     [SerializeField]
     private float maxTimeBar = 100f;
-
+    
     private Rigidbody2D body;
 
     private Vector2 curDir = new Vector2();
@@ -43,6 +43,10 @@ public class Player : GameEntity {
     }
 
     void Update () {
+        if (GameManager.Instance.IsGameOver) {
+            return;
+        }
+
         Vector2 newDir = new Vector2();
 
 		if (Input.GetKey(KeyCode.W)) {
@@ -76,6 +80,8 @@ public class Player : GameEntity {
     protected override void onDeath() {
         Debug.Log("Player dead");
         // TODO: for now do nothing. Later display game over screen
+
+        onGameOver();
     }
 
     private void handleTimeStopLogic() {
@@ -96,5 +102,10 @@ public class Player : GameEntity {
         }
 
         Time.timeScale = timeStopped ? timeSlowdownVal : 1;
+    }
+
+    private void onGameOver() {
+        curDir = new Vector2();
+        GameManager.Instance.GameOver();
     }
 }
