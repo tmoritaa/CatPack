@@ -47,10 +47,10 @@ public class Cat : GameEntity {
 
         body = GetComponent<Rigidbody2D>();
 
-        orderObj = Instantiate(ordersFramePrefab, ordersFrameRoot);
+        orderObj = Instantiate(ordersFramePrefab, ordersFrameRoot, false);
         orderObj.Init(this, ordersFollowGO);
 
-        catHealthObj = Instantiate(catHealthPrefab, healthFrameRoot);
+        catHealthObj = Instantiate(catHealthPrefab, healthFrameRoot, false);
         catHealthObj.Init(this, healthFollowsGO);
 
         displayOrders(false);

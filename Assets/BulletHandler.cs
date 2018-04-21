@@ -22,7 +22,7 @@ public class BulletHandler : MonoBehaviour {
     }
 
     public Bullet CreateBullet() {
-        Bullet bullet = Instantiate<Bullet>(bulletPrefab, bulletsRoot);
+        Bullet bullet = Instantiate<Bullet>(bulletPrefab, bulletsRoot, false);
 
         return bullet;
     }
