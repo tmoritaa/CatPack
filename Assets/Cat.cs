@@ -27,7 +27,7 @@ public class Cat : MonoBehaviour {
         orderDict.Add(Order.OrderType.Idle, new IdleOrder(this));
         orderDict.Add(Order.OrderType.Move, new MoveOrder(this));
 
-        setupNewOrder(Order.OrderType.Idle);
+        returnToDefaultOrder();
     }
 
     void Update() {
@@ -38,6 +38,10 @@ public class Cat : MonoBehaviour {
 
         if (curOrder != null) {
             curOrder.PerformOrderUpdate();
+
+            if (curOrder.Done()) {
+                returnToDefaultOrder();
+            }
         }
     }
 
@@ -64,6 +68,10 @@ public class Cat : MonoBehaviour {
         Vector2 diffVec = (pos - (Vector2)this.transform.position).normalized;
 
         body.velocity = diffVec * moveMag;
+    }
+
+    private void returnToDefaultOrder() {
+        setupNewOrder(Order.OrderType.Idle);
     }
 
     private void setupNewOrder(Order.OrderType id) {

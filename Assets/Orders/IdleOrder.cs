@@ -19,6 +19,10 @@ public class IdleOrder : Order
         // Do nothing
     }
 
+    public override bool Done() {
+        return false;
+    }
+
     public override void Cleanup() {
         // Do nothing
     }

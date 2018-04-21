@@ -31,6 +31,7 @@ public abstract class Order
     public abstract void PerformOrderUpdate();
     public abstract void PerformOrderFixedUpdate();
     public abstract void Cleanup();
+    public abstract bool Done();
 
     public abstract void DrawGizmos();
 }

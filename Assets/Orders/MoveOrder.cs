@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MoveOrder : Order
 {
+    private const float distMagToStop = 5f;
+
     private bool waitingForInput = false;
 
     private Vector2 targetPos = new Vector2();
@@ -25,6 +27,16 @@ public class MoveOrder : Order
 
     public override void PerformOrderUpdate() {
         // Do nothing.
+    }
+
+    public override bool Done() {
+        if (!waitingForInput) {
+            Vector2 diffVec = targetPos - (Vector2)owningCat.transform.position;
+
+            return diffVec.magnitude < distMagToStop;
+        }
+
+        return false;
     }
 
     public override void Cleanup() {
