@@ -1,10 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour {
     [SerializeField]
     private Rigidbody2D body;
+
+    [SerializeField]
+    private Sprite enemyBulletSprite;
+
+    [SerializeField]
+    private Sprite playerBulletSprite;
+
+    [SerializeField]
+    private Image image;
 
     private float range;
 
@@ -42,6 +52,8 @@ public class Bullet : MonoBehaviour {
         shotByEnemy = _shotByEnemy;
 
         this.transform.position = origPos;
+
+        image.sprite = shotByEnemy ? enemyBulletSprite : playerBulletSprite;
 
         impulseVec = shootDir.normalized * shootMag;
         applyImpulse = true;
