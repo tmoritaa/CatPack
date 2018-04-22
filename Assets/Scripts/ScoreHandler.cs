@@ -28,9 +28,10 @@ public class ScoreHandler : MonoBehaviour {
 	}
 
     public void AddScore(int addVal) {
-        Score += addVal;
-
-        updateScoreText();
+        if (!GameManager.Instance.IsGameOver) {
+            Score += addVal;
+            updateScoreText();
+        }
     }
 
     private void updateScoreText() {

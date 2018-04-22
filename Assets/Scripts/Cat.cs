@@ -33,6 +33,8 @@ public class Cat : PlayerEntity {
 
     private OrdersFrame orderObj;
 
+    private Animator animator;
+
     private CatHealthDisplay catHealthObj;
 
     private Dictionary<Order.OrderType, Order> orderDict = new Dictionary<Order.OrderType, Order>();
@@ -46,6 +48,7 @@ public class Cat : PlayerEntity {
         base.Awake();
 
         body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         orderObj = Instantiate(ordersFramePrefab, ordersFrameRoot, false);
         orderObj.Init(this, ordersFollowGO);
@@ -65,6 +68,10 @@ public class Cat : PlayerEntity {
     }
 
     void Update() {
+        if (dead) {
+            return;
+        }
+
         if (shouldSetupNewOrder) {
             setupNewOrder(newOrderId);
             shouldSetupNewOrder = false;
@@ -82,7 +89,7 @@ public class Cat : PlayerEntity {
     void FixedUpdate() {
         body.velocity = new Vector2();
 
-        if (curOrder != null) {
+        if (curOrder != null && !dead) {
             curOrder.PerformOrderFixedUpdate();
         }
     }
@@ -94,12 +101,20 @@ public class Cat : PlayerEntity {
     }
 
     public void CatClicked() {
+        if (dead) {
+            return;
+        }
+
         displayOrders(true);
 
         InputManager.Instance.OnRightMouseUp += hideOrders;
     }
 
     public void OrderButtonClicked(Order.OrderType orderId) {
+        if (dead) {
+            return;
+        }
+
         newOrderId = orderId;
         shouldSetupNewOrder = true;
 
@@ -109,12 +124,11 @@ public class Cat : PlayerEntity {
 
     public void MoveTowardsPos(Vector2 pos, bool run) {
         Vector2 diffVec = (pos - (Vector2)this.transform.position).normalized;
-
-        body.velocity = diffVec * (run ? runMag : moveMag);
+        setVelocity(diffVec * (run ? runMag : moveMag));
     }
 
     public void MoveInDir(Vector2 dir, bool run) {
-        body.velocity = dir.normalized * (run ? runMag : moveMag);
+        setVelocity(dir.normalized * (run ? runMag : moveMag));
     }
 
     public void ReturnToDefaultOrder() {
@@ -125,13 +139,40 @@ public class Cat : PlayerEntity {
 
     protected override void onDamage() {
         base.onDamage();
-        // TODO: for now do nothing. Later trigger animation and pause time as well as invincibility
+
+        animator.SetTrigger("Damaged");
     }
 
     protected override void onDeath() {
         // TODO: play death animation, then kill self. For now just destroy self
         cleanup();
-        GameObject.Destroy(this.gameObject);
+        body.velocity = new Vector2();
+
+        dead = true;
+
+        animator.SetTrigger("Dead");
+
+        StartCoroutine(destroySelfAfterSeconds(1.5f));
+    }
+
+    private void setVelocity(Vector2 vel) {
+        if (dead) {
+            return;
+        }
+
+        body.velocity = vel;
+
+        if (vel.magnitude > 0) {
+            animator.SetTrigger("Move");
+
+            if (vel.x > 0) {
+                Vector3 scale = this.transform.localScale;
+                scale.z = -1;
+                this.transform.localScale = scale;
+            }
+        } else {
+            animator.SetTrigger("Idle");
+        }
     }
 
     private void cleanup() {
@@ -145,6 +186,9 @@ public class Cat : PlayerEntity {
 
         Destroy(orderObj.gameObject);
         Destroy(catHealthObj.gameObject);
+
+        orderObj = null;
+        catHealthObj = null;
     }
 
     private void setupNewOrder(Order.OrderType id) {
@@ -157,10 +201,18 @@ public class Cat : PlayerEntity {
     }
 
     private void displayOrders(bool show) {
-        orderObj.SetShowState(show);
+        if (orderObj != null) {
+            orderObj.SetShowState(show);
+        }
     }
 
     private void hideOrders() {
         displayOrders(false);
+    }
+
+    private IEnumerator destroySelfAfterSeconds(float secs) {
+        yield return new WaitForSeconds(secs);
+
+        GameObject.Destroy(this.gameObject);
     }
 }

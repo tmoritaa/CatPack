@@ -11,6 +11,8 @@ public abstract class GameEntity : MonoBehaviour
 
     protected bool beingDestoryed = false;
 
+    protected bool dead = false;
+
     public int Health
     {
         get; protected set;
@@ -21,6 +23,10 @@ public abstract class GameEntity : MonoBehaviour
     }
 
     public virtual void Damage(int dmgAmount) {
+        if (dead) {
+            return;
+        }
+
         Health -= dmgAmount;
 
         Health = Math.Max(0, Health);
@@ -28,6 +34,7 @@ public abstract class GameEntity : MonoBehaviour
         if (Health > 0) {
             onDamage();
         } else {
+            dead = true;
             onDeath();
         }
     }

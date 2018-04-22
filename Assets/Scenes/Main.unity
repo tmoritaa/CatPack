@@ -711,6 +711,7 @@ GameObject:
   - component: {fileID: 760339584}
   - component: {fileID: 760339585}
   - component: {fileID: 760339586}
+  - component: {fileID: 760339587}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -802,6 +803,23 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &760339587
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 760339581}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08505677cfde17745847066342bca1f2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &809319751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1536,6 +1554,7 @@ GameObject:
   - component: {fileID: 1348247703}
   - component: {fileID: 1348247704}
   - component: {fileID: 1348247705}
+  - component: {fileID: 1348247706}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Cat
@@ -1577,7 +1596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83e38593d5cbc4db9670b7afdb3886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 9
+  startingHealth: 1
   invincibleDur: 1
   moveMag: 50
   runMag: 150
@@ -1637,6 +1656,23 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &1348247706
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1348247700}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b498719e8248724ab26db4b040da192, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1382086707
 GameObject:
   m_ObjectHideFlags: 0

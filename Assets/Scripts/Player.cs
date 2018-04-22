@@ -25,6 +25,8 @@ public class Player : PlayerEntity {
     
     private Rigidbody2D body;
 
+    private Animator animator;
+
     private Vector2 curDir = new Vector2();
 
     private bool timeStopped = false;
@@ -38,12 +40,13 @@ public class Player : PlayerEntity {
         base.Awake();
 
         body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         CurTimeBar = maxTimeBar;
     }
 
     void Update () {
-        if (GameManager.Instance.IsGameOver) {
+        if (GameManager.Instance.IsGameOver || dead) {
             return;
         }
 
@@ -65,6 +68,18 @@ public class Player : PlayerEntity {
 
         curDir = newDir.normalized;
 
+        if (curDir.magnitude > 0) {
+            animator.SetTrigger("Move");
+
+            if (curDir.x > 0) {
+                Vector3 scale = this.transform.localScale;
+                scale.z = -1;
+                this.transform.localScale = scale;
+            }
+        } else {
+            animator.SetTrigger("Idle");
+        }
+
         handleTimeStopLogic();
 	}
 
@@ -75,13 +90,11 @@ public class Player : PlayerEntity {
     protected override void onDamage() {
         base.onDamage();
 
-        Debug.Log("Player damaged");
-        // TODO: for now do nothing. Later trigger animation and pause time as well as invincibility
+        animator.SetTrigger("Damaged");
     }
 
     protected override void onDeath() {
-        Debug.Log("Player dead");
-        // TODO: for now do nothing. Later display game over screen
+        animator.SetTrigger("Dead");
 
         onGameOver();
     }
