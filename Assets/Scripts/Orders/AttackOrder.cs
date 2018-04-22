@@ -35,6 +35,8 @@ class AttackOrder : Order
     }
 
     public override void PerformOrderUpdate() {
+        owningCat.Animator.SetTrigger("Shoot");
+
         if (!waitingForInput) {
             if (deltaTimeSinceLastShot >= shootUpdatePeriod) {
                 Bullet bullet = BulletHandler.Instance.CreateBullet();
@@ -57,13 +59,8 @@ class AttackOrder : Order
     }
 
     public override void Cleanup() {
-        if (waitingForInput) {
-            InputManager.Instance.OnLeftMouseDown -= onMouseDown;
-            InputManager.Instance.OnRightMouseUp -= owningCat.ReturnToDefaultOrder;
-        }
-
-        InputManager.Instance.Cursor.SetImageToDefault();
-        waitingForInput = false;
+        minorCleanup();
+        owningCat.Animator.SetTrigger("DoneShooting");
     }
 
     public override bool Done() {
@@ -74,8 +71,18 @@ class AttackOrder : Order
         // Do nothing
     }
 
+    private void minorCleanup() {
+        if (waitingForInput) {
+            InputManager.Instance.OnLeftMouseDown -= onMouseDown;
+            InputManager.Instance.OnRightMouseUp -= owningCat.ReturnToDefaultOrder;
+        }
+
+        InputManager.Instance.Cursor.SetImageToDefault();
+        waitingForInput = false;
+    }
+
     private void onMouseDown(Vector2 mousePos) {
         shootDir = (mousePos - (Vector2)owningCat.transform.position).normalized;
-        Cleanup();
+        minorCleanup();
     }
 }

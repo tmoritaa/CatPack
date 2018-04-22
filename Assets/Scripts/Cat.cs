@@ -43,6 +43,12 @@ public class Cat : PlayerEntity {
     private OrdersFrame orderObj;
 
     private Animator animator;
+    public Animator Animator
+    {
+        get {
+            return animator;
+        }
+    }
 
     private CatHealthDisplay catHealthObj;
 
@@ -158,7 +164,6 @@ public class Cat : PlayerEntity {
     }
 
     protected override void onDeath() {
-        // TODO: play death animation, then kill self. For now just destroy self
         cleanup();
         body.velocity = new Vector2();
 
