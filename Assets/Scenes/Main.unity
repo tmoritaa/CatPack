@@ -1269,7 +1269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1946991721}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &865848892
 GameObject:
@@ -2128,7 +2128,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1946991721}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1206098011
 GameObject:
@@ -4086,8 +4086,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1202582076}
   - {fileID: 809319752}
+  - {fileID: 1202582076}
   - {fileID: 1508764868}
   - {fileID: 1655387964}
   - {fileID: 1057592690}
@@ -4256,7 +4256,7 @@ MonoBehaviour:
   - {fileID: 114559083430716524, guid: 741d61182998c17489a7b448a38a9345, type: 2}
   enemySpawnPercentageForLevel1: 64000000
   enemySpawnPercentageForLevel2: 460000001e000000
-  enemySpawnPercentageForLevel3: 370000001e0000000f000000
+  enemySpawnPercentageForLevel3: 320000001e00000014000000
   enemyRoot: {fileID: 1980831445}
 --- !u!1 &2115012796
 GameObject:
