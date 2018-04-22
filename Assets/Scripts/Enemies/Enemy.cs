@@ -11,7 +11,7 @@ public abstract class Enemy : GameEntity
     [SerializeField]
     private int score;
 
-    private Animator animator;
+    protected Animator animator;
 
     protected Rigidbody2D body;
 

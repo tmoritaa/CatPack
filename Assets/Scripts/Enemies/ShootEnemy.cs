@@ -74,6 +74,12 @@ public class ShootEnemy : Enemy
     protected override void performMovement() {
         body.velocity = curDir * moveMag;
 
+        if (curDir.magnitude == 0) {
+            animator.SetTrigger("Idle");
+        } else {
+            animator.SetTrigger("Move");
+        }
+
         base.performMovement();
     }
 
