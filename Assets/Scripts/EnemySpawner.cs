@@ -8,12 +8,12 @@ public class EnemySpawner : MonoBehaviour {
 
     [SerializeField]
     private int maxSpawnRange = 1000;
-
-    [SerializeField]
-    private float spawnRate = 1f;
-
+    
     [SerializeField]
     private List<int> scoreThresholdPerLevel;
+
+    [SerializeField]
+    private List<float> spawnRatePerLevel;
 
     [SerializeField]
     private List<Enemy> enemyPrefabsForLevel1;
@@ -22,10 +22,16 @@ public class EnemySpawner : MonoBehaviour {
     private List<Enemy> enemyPrefabsForLevel2;
 
     [SerializeField]
+    private List<Enemy> enemyPrefabsForLevel3;
+
+    [SerializeField]
     private List<int> enemySpawnPercentageForLevel1;
 
     [SerializeField]
     private List<int> enemySpawnPercentageForLevel2;
+
+    [SerializeField]
+    private List<int> enemySpawnPercentageForLevel3;
 
     [SerializeField]
     private Transform enemyRoot;
@@ -42,9 +48,11 @@ public class EnemySpawner : MonoBehaviour {
     void Awake() {
         enemyPrefabsPerLevel.Add(enemyPrefabsForLevel1);
         enemyPrefabsPerLevel.Add(enemyPrefabsForLevel2);
+        enemyPrefabsPerLevel.Add(enemyPrefabsForLevel3);
 
         enemySpawnPercentagePerLevel.Add(enemySpawnPercentageForLevel1);
         enemySpawnPercentagePerLevel.Add(enemySpawnPercentageForLevel2);
+        enemySpawnPercentagePerLevel.Add(enemySpawnPercentageForLevel3);
     }
 
     void Update () {
@@ -61,7 +69,7 @@ public class EnemySpawner : MonoBehaviour {
             return;
         }
 
-		if (timeSinceLastSpawn > spawnRate) {
+		if (timeSinceLastSpawn > spawnRatePerLevel[curLevel]) {
             spawnEnemy();
             timeSinceLastSpawn = 0;
         }

@@ -2922,15 +2922,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnRange: 350
   maxSpawnRange: 450
-  spawnRate: 2
-  scoreThresholdPerLevel: 640000002c010000
+  scoreThresholdPerLevel: 32000000c800000090010000
+  spawnRatePerLevel:
+  - 2
+  - 1.75
+  - 1.75
   enemyPrefabsForLevel1:
-  - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
+  - {fileID: 114559083430716524, guid: 741d61182998c17489a7b448a38a9345, type: 2}
   enemyPrefabsForLevel2:
   - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
   - {fileID: 114093946510306642, guid: a87a386a20d01ae4fb25ed2695f5b946, type: 2}
+  enemyPrefabsForLevel3:
+  - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
+  - {fileID: 114093946510306642, guid: a87a386a20d01ae4fb25ed2695f5b946, type: 2}
+  - {fileID: 114559083430716524, guid: 741d61182998c17489a7b448a38a9345, type: 2}
   enemySpawnPercentageForLevel1: 64000000
   enemySpawnPercentageForLevel2: 460000001e000000
+  enemySpawnPercentageForLevel3: 3c0000001e0000000a000000
   enemyRoot: {fileID: 1980831445}
 --- !u!1 &2115012796
 GameObject:

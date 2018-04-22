@@ -12,6 +12,9 @@ class BasicEnemy : Enemy
     [SerializeField]
     private RectTransform rect;
 
+    [SerializeField]
+    private AudioSource hitAudioSource;
+
     private Vector2 curDir = new Vector2();
 
     void OnTriggerEnter2D(Collider2D collision) {
@@ -54,6 +57,7 @@ class BasicEnemy : Enemy
     }
 
     protected override void onDamage() {
-        // Do nothing since only one health
+        animator.SetTrigger("Damaged");
+        hitAudioSource.Play();
     }
 }
