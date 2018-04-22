@@ -9,6 +9,6 @@ public class PlayerHealthDisplay : MonoBehaviour {
 
     void Update() {
         Player player = ObjectRefHolder.Instance.PlayerRef;
-        text.text = "Health: " + player.Health.ToString();
+        text.text = player.Health.ToString();
     }
 }

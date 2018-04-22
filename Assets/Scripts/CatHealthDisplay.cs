@@ -16,7 +16,7 @@ public class CatHealthDisplay : MonoBehaviour {
             this.transform.position = pos;
         }
 
-        text.text = "Health: " + owner.Health.ToString();
+        text.text = owner.Health.ToString();
     }
 
     public void Init(Cat ownerRef, GameObject followObj) {

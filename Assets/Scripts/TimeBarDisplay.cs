@@ -9,6 +9,6 @@ public class TimeBarDisplay : MonoBehaviour {
 
     void Update() {
         Player player = ObjectRefHolder.Instance.PlayerRef;
-        text.text = "Time: " + Mathf.RoundToInt(player.CurTimeBar).ToString();
+        text.text = Mathf.RoundToInt(player.CurTimeBar).ToString();
     }
 }
