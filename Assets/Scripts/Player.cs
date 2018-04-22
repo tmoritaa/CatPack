@@ -22,6 +22,9 @@ public class Player : PlayerEntity {
 
     [SerializeField]
     private float maxTimeBar = 100f;
+
+    [SerializeField]
+    private AudioSource hitAudioSource;
     
     private Rigidbody2D body;
 
@@ -91,6 +94,7 @@ public class Player : PlayerEntity {
     protected override void onDamage() {
         base.onDamage();
 
+        hitAudioSource.Play();
         animator.SetTrigger("Damaged");
     }
 

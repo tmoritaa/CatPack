@@ -29,6 +29,15 @@ public class Cat : PlayerEntity {
     [SerializeField]
     private GameObject healthFollowsGO;
 
+    [SerializeField]
+    private AudioSource hitAudioSource;
+
+    [SerializeField]
+    private AudioSource deadAudioSource;
+
+    [SerializeField]
+    private AudioSource shootAudioSource;
+
     private Rigidbody2D body;
 
     private OrdersFrame orderObj;
@@ -137,9 +146,14 @@ public class Cat : PlayerEntity {
         }
     }
 
+    public void PlayShootAudioSource() {
+        shootAudioSource.Play();
+    }
+
     protected override void onDamage() {
         base.onDamage();
 
+        hitAudioSource.Play();
         animator.SetTrigger("Damaged");
     }
 
@@ -150,6 +164,7 @@ public class Cat : PlayerEntity {
 
         dead = true;
 
+        deadAudioSource.Play();
         animator.SetTrigger("Dead");
 
         StartCoroutine(destroySelfAfterSeconds(1.5f));

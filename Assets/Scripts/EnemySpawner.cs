@@ -35,6 +35,8 @@ public class EnemySpawner : MonoBehaviour {
 
     private int curLevel = 0;
 
+    private bool firstSpawn = true;
+
     private float timeSinceLastSpawn = 999;
 
     void Awake() {
@@ -47,6 +49,15 @@ public class EnemySpawner : MonoBehaviour {
 
     void Update () {
         if (GameManager.Instance.IsGameOver) {
+            return;
+        }
+
+        if (firstSpawn) {
+            for (int i = 0; i < 2; ++i) {
+                spawnEnemy();
+            }
+            firstSpawn = false;
+
             return;
         }
 
@@ -75,7 +86,7 @@ public class EnemySpawner : MonoBehaviour {
         foreach (int rate in enemySpawnRateForLevel) {
             curRate += rate;
 
-            if (randPerc < curRate) {
+            if (randPerc <= curRate) {
                 break;
             }
 

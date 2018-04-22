@@ -11,6 +11,9 @@ public abstract class Enemy : GameEntity
     [SerializeField]
     private int score;
 
+    [SerializeField]
+    protected AudioSource explosionAudioSource;
+
     protected Animator animator;
 
     protected Rigidbody2D body;
@@ -54,6 +57,8 @@ public abstract class Enemy : GameEntity
         collider2d.enabled = false;
         ScoreHandler.Instance.AddScore(score);
         animator.SetTrigger("Dead");
+        explosionAudioSource.Play();
+
         StartCoroutine(WaitForDeath());
     }
 

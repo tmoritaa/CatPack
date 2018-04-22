@@ -46,6 +46,8 @@ class AttackOrder : Order
                 }
                 owningCat.gameObject.transform.localScale = scale;
 
+                owningCat.PlayShootAudioSource();
+
                 deltaTimeSinceLastShot = 0f;
             }
 

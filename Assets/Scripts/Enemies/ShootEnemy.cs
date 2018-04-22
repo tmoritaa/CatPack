@@ -21,6 +21,9 @@ public class ShootEnemy : Enemy
     [SerializeField]
     private RectTransform rect;
 
+    [SerializeField]
+    private AudioSource shootAudioSource;
+
     private Vector2 curDir = new Vector2();
 
     private float deltaTimeSinceLastShot = 0;
@@ -45,6 +48,8 @@ public class ShootEnemy : Enemy
         if (canShoot && diffVec.magnitude < range) {
             Bullet bullet = BulletHandler.Instance.CreateBullet();
             bullet.Fire(this.gameObject, this.gameObject.transform.position, diffVec.normalized, shootMag, range, true);
+
+            shootAudioSource.Play();
 
             deltaTimeSinceLastShot = 0;
         } else if (diffVec.magnitude >= range - 100f) {
