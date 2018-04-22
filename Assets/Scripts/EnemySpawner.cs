@@ -19,7 +19,13 @@ public class EnemySpawner : MonoBehaviour {
     private List<Enemy> enemyPrefabsForLevel1;
 
     [SerializeField]
+    private List<Enemy> enemyPrefabsForLevel2;
+
+    [SerializeField]
     private List<int> enemySpawnPercentageForLevel1;
+
+    [SerializeField]
+    private List<int> enemySpawnPercentageForLevel2;
 
     [SerializeField]
     private Transform enemyRoot;
@@ -33,8 +39,10 @@ public class EnemySpawner : MonoBehaviour {
 
     void Awake() {
         enemyPrefabsPerLevel.Add(enemyPrefabsForLevel1);
+        enemyPrefabsPerLevel.Add(enemyPrefabsForLevel2);
 
         enemySpawnPercentagePerLevel.Add(enemySpawnPercentageForLevel1);
+        enemySpawnPercentagePerLevel.Add(enemySpawnPercentageForLevel2);
     }
 
     void Update () {

@@ -869,7 +869,7 @@ RectTransform:
   m_Children:
   - {fileID: 612548264}
   m_Father: {fileID: 1095911062}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416e8dec9c4375a428a36ecaad1afa20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 5
   invincibleDur: 1
   moveMag: 70
   timeSlowdownVal: 0
@@ -1384,8 +1384,8 @@ RectTransform:
   m_Children:
   - {fileID: 388541789}
   - {fileID: 1980831445}
-  - {fileID: 1382086708}
   - {fileID: 760339582}
+  - {fileID: 1382086708}
   - {fileID: 2038250096}
   - {fileID: 1206098012}
   m_Father: {fileID: 0}
@@ -1928,7 +1928,7 @@ Transform:
   m_Children:
   - {fileID: 1348247701}
   m_Father: {fileID: 1095911062}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1387073733
 GameObject:
@@ -2478,11 +2478,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSpawnRange: 350
   maxSpawnRange: 450
-  spawnRate: 1.5
-  scoreThresholdPerLevel: 64000000
+  spawnRate: 2
+  scoreThresholdPerLevel: 640000002c010000
   enemyPrefabsForLevel1:
+  - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
+  enemyPrefabsForLevel2:
+  - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
   - {fileID: 114093946510306642, guid: a87a386a20d01ae4fb25ed2695f5b946, type: 2}
   enemySpawnPercentageForLevel1: 64000000
+  enemySpawnPercentageForLevel2: 460000001e000000
   enemyRoot: {fileID: 1980831445}
 --- !u!1 &2115012796
 GameObject:
