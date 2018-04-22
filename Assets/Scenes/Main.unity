@@ -4243,8 +4243,8 @@ MonoBehaviour:
   scoreThresholdPerLevel: 32000000c800000090010000
   spawnRatePerLevel:
   - 2
-  - 1.75
   - 1.5
+  - 1.25
   enemyPrefabsForLevel1:
   - {fileID: 114735516495424724, guid: 2db053929b28bde4295b88aa71e6f2b0, type: 2}
   enemyPrefabsForLevel2:
