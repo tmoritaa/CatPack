@@ -122,6 +122,12 @@ public class Player : PlayerEntity {
 
     private void onGameOver() {
         curDir = new Vector2();
+
+        // Reset scale s.t. dead anim isn't weird
+        Vector3 scale = this.transform.localScale;
+        scale.x = 1;
+        this.transform.localScale = scale;
+
         GameManager.Instance.GameOver();
     }
 }

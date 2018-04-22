@@ -40,6 +40,12 @@ class AttackOrder : Order
                 Bullet bullet = BulletHandler.Instance.CreateBullet();
                 bullet.Fire(owningCat.gameObject, owningCat.transform.position, shootDir, 500, 1000, false);
 
+                Vector3 scale = owningCat.gameObject.transform.localScale;
+                if (Mathf.Abs(shootDir.x) > 0) {
+                    scale.x = shootDir.x > 0 ? -1 : 1;
+                }
+                owningCat.gameObject.transform.localScale = scale;
+
                 deltaTimeSinceLastShot = 0f;
             }
 
