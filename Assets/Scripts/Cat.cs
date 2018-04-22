@@ -165,9 +165,10 @@ public class Cat : PlayerEntity {
         if (vel.magnitude > 0) {
             animator.SetTrigger("Move");
 
-            if (vel.x > 0) {
+            if (Mathf.Abs(vel.x) > 0) {
+                float z = vel.x > 0 ? -1 : 1;
                 Vector3 scale = this.transform.localScale;
-                scale.z = -1;
+                scale.x = z;
                 this.transform.localScale = scale;
             }
         } else {
