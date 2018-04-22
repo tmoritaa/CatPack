@@ -1825,7 +1825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d83e38593d5cbc4db9670b7afdb3886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1
+  startingHealth: 9
   invincibleDur: 1
   moveMag: 40
   runMag: 100
