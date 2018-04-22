@@ -113,9 +113,9 @@ MonoBehaviour:
   startingHealth: 1
   score: 20
   moveMag: 60
-  range: 200
+  range: 300
   shootRate: 3
-  shootMag: 200
+  shootMag: 150
   rect: {fileID: 224561493076030314}
 --- !u!114 &114814078969094722
 MonoBehaviour:

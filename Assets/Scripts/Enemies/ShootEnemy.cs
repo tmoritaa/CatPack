@@ -23,7 +23,7 @@ public class ShootEnemy : Enemy
 
     private Vector2 curDir = new Vector2();
 
-    private float deltaTimeSinceLastShot = 9999;
+    private float deltaTimeSinceLastShot = 0;
 
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Player" || collision.tag == "Cat") {

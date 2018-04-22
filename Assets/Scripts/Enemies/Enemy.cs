@@ -40,7 +40,7 @@ public abstract class Enemy : GameEntity
     protected abstract void performGameLogic();
 
     protected virtual void performMovement() {
-        Vector2 vel = body.velocity;
+        Vector2 vel = ObjectRefHolder.Instance.PlayerRef.transform.position - this.transform.position;
 
         if (Mathf.Abs(vel.x) > 5) {
             Vector3 localScale = this.transform.localScale;
