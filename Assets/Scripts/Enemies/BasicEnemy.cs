@@ -17,15 +17,6 @@ class BasicEnemy : Enemy
 
     private Vector2 curDir = new Vector2();
 
-    void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Player" || collision.tag == "Cat") {
-            GameEntity entity = collision.GetComponent<GameEntity>();
-            entity.Damage(1);
-
-            onDeath();
-        }
-    }
-
     protected override void performGameLogic() {
         Vector3 playerPos = ObjectRefHolder.Instance.PlayerRef.transform.position;
 

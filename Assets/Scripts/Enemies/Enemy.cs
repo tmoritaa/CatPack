@@ -9,7 +9,10 @@ using UnityEngine;
 public abstract class Enemy : GameEntity
 {
     [SerializeField]
-    private int score;
+    protected int score;
+
+    [SerializeField]
+    protected int damage = 1;
 
     [SerializeField]
     protected AudioSource explosionAudioSource;
@@ -37,6 +40,15 @@ public abstract class Enemy : GameEntity
         body.velocity = new Vector2();
         if (!dead) {
             performMovement();
+        }
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Player" || collision.tag == "Cat") {
+            GameEntity entity = collision.GetComponent<GameEntity>();
+            entity.Damage(damage);
+
+            onDeath();
         }
     }
 

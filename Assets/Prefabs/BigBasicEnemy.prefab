@@ -357,6 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 3
   score: 40
+  damage: 3
   explosionAudioSource: {fileID: 82808627876739146}
   moveMag: 50
   rect: {fileID: 224574190749280080}
