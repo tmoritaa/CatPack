@@ -42,7 +42,7 @@ public abstract class Enemy : GameEntity
     protected virtual void performMovement() {
         Vector2 vel = body.velocity;
 
-        if (Mathf.Abs(vel.x) > 0) {
+        if (Mathf.Abs(vel.x) > 5) {
             Vector3 localScale = this.transform.localScale;
             localScale.x = (vel.x > 0) ? -1 : 1;
             this.transform.localScale = localScale;

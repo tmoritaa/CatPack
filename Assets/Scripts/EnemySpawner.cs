@@ -37,8 +37,11 @@ public class EnemySpawner : MonoBehaviour {
         enemySpawnPercentagePerLevel.Add(enemySpawnPercentageForLevel1);
     }
 
-    // Update is called once per frame
     void Update () {
+        if (GameManager.Instance.IsGameOver) {
+            return;
+        }
+
 		if (timeSinceLastSpawn > spawnRate) {
             spawnEnemy();
             timeSinceLastSpawn = 0;
